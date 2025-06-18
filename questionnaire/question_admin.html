@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос</title>
+</head>
+<body>
+    <h1>Вопрос: {{.Title}}</h1>
+    <h2>Варианты ответа</h2>
+    <table>
+        <tr>
+            <th>Вариант ответа</th>
+            <th>Как часто встречается</th>
+        </tr>
+        {{range .Answers}}
+        <tr>
+            <td>{{.Text}}</td>
+            <td>{{.Freq}}</td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>

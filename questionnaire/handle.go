@@ -5,16 +5,32 @@ import (
 	"net/http"
 )
 
-type Data struct {
-	Name string
+type ClientData struct {
+	Title string
+}
+
+type ClientAnswer struct {
+	Text string
+	Freq int
+}
+
+type OwnerData struct {
+	Title   string
+	Answers []ClientAnswer
 }
 
 func HandleQuestion(w http.ResponseWriter, req *http.Request) {
 	tmpl := template.Must(template.ParseFiles("questionnaire/question.html"))
-	data := Data{Name: GetQuestionTarget()}
+	data := ClientData{Title: GetQuestionTarget()}
 	tmpl.Execute(w, data)
 }
 
 func HandleQuestionAdmin(w http.ResponseWriter, req *http.Request) {
-
+	tmpl := template.Must(template.ParseFiles("questionnaire/question_admin.html"))
+	options := GetOptions()
+	data := OwnerData{Title: GetQuestionTarget(), Answers: make([]ClientAnswer, 0)}
+	for option, freq := range options {
+		data.Answers = append(data.Answers, ClientAnswer{Text: option, Freq: freq})
+	}
+	tmpl.Execute(w, data)
 }
