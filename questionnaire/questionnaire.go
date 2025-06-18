@@ -1,5 +1,7 @@
 package questionnaire
 
+import "strings"
+
 type Question struct {
 	Title   string
 	Options map[string]int
@@ -24,5 +26,14 @@ func GetOptions() map[string]int {
 }
 
 func AddOption(option string) {
-	currentQuestion.Options[option] += 1
+	begin := 0
+	for option[begin] == ' ' {
+		begin++
+	}
+	end := len(option) - 1
+	for option[end] == ' ' {
+		end--
+	}
+	option_ready := option[begin : end+1]
+	currentQuestion.Options[strings.ToLower(option_ready)] += 1
 }
