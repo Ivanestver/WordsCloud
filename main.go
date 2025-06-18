@@ -18,6 +18,8 @@ func main() {
 	http.HandleFunc("/create_poll", poll.HandleCreatePoll)
 	http.HandleFunc("/question", questionnaire.HandleQuestion)
 	http.HandleFunc("/question_admin", questionnaire.HandleQuestionAdmin)
+	http.HandleFunc("/new_option", questionnaire.HandleNewOption)
+	http.HandleFunc("/thank_page", questionnaire.HandleThankPage)
 
 	log.Fatal(http.ListenAndServe(":50000", nil))
 	fmt.Println("Started listening to the port 50000")

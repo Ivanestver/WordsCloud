@@ -34,3 +34,13 @@ func HandleQuestionAdmin(w http.ResponseWriter, req *http.Request) {
 	}
 	tmpl.Execute(w, data)
 }
+
+func HandleNewOption(w http.ResponseWriter, req *http.Request) {
+	option := req.FormValue("answer")
+	AddOption(option)
+	http.Redirect(w, req, "/thank_page", http.StatusSeeOther)
+}
+
+func HandleThankPage(w http.ResponseWriter, req *http.Request) {
+	http.ServeFile(w, req, "questionnaire/thank_page.html")
+}
