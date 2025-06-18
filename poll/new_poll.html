@@ -6,10 +6,11 @@
     <title>Создать опрос</title>
 </head>
 <body>
-    <form action="post">
+    <form action="create_poll" method="post" name="new_poll">
         <label for="question_input">Введите вопрос</label>
-        <input type="text" name="Вопрос" id="question_input">
-        <button type="submit">Создать</button>
+        <input type="text" name="question" id="question_input">
+        <input type="submit" value="Создать">
     </form>
+    <script src="poll/new_poll.js"></script>
 </body>
 </html>
